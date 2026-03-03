@@ -1,0 +1,118 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+spring:
+  application:
+    name: develitehub-backend
+
+  # ─── Database ─────────────────────────────────────────────────────
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:develitehub}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:Pass@123}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+
+  # ─── JPA / Hibernate ──────────────────────────────────────────────
+  jpa:
+    hibernate:
+      ddl-auto: update          # auto-creates/updates tables; switch to 'validate' after first run
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    open-in-view: false
+
+  # ─── File Upload ──────────────────────────────────────────────────
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 100MB
+      max-request-size: 110MB
+
+# ─── JWT ─────────────────────────────────────────────────────────────
+jwt:
+  secret: qfAmK4UfwtFzA+QjDF+PZo3irzyXx8rIJhvir+qX3Hw=
+  expiration-ms: 86400000          # 24 hours
+  refresh-expiration-ms: 604800000  # 7 days
+
+# ─── Stripe ──────────────────────────────────────────────────────────
+stripe:
+  secret-key: ${STRIPE_SECRET_KEY:sk_test_placeholder}
+  webhook-secret: ${STRIPE_WEBHOOK_SECRET:whsec_placeholder}
+  currency: usd
+
+# ─── AWS S3 ──────────────────────────────────────────────────────────
+aws:
+  s3:
+    bucket-name: ${AWS_S3_BUCKET:develitehub-content}
+    region: ${AWS_REGION:us-east-1}
+    presigned-url-expiration-minutes: 60
+  access-key: ${AWS_ACCESS_KEY_ID:}
+  secret-key: ${AWS_SECRET_ACCESS_KEY:}
+
+# ─── CORS ────────────────────────────────────────────────────────────
+cors:
+  allowed-origins: ${CORS_ORIGINS:http://localhost:5173,http://localhost:3000}
+
+# ─── Platform Config ─────────────────────────────────────────────────
+platform:
+  commission-rate: 0.15   # 15% platform commission
+  name: DevElite Hub
+
+app:
+  frontend-url: ${FRONTEND_URL:http://localhost:5173}
+
+# ─── Actuator ────────────────────────────────────────────────────────
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: when-authorized
+
+# ─── Logging ─────────────────────────────────────────────────────────
+logging:
+  level:
+    com.develitehub: INFO
+    org.springframework.security: WARN
+    org.hibernate.SQL: WARN
+
+---
+# ─── Development Profile ─────────────────────────────────────────────
+spring:
+  config:
+    activate:
+      on-profile: dev
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+logging:
+  level:
+    com.develitehub: DEBUG
+    org.springframework.security: DEBUG
+    org.hibernate.SQL: DEBUG
+
+---
+# ─── Production Profile ──────────────────────────────────────────────
+spring:
+  config:
+    activate:
+      on-profile: prod
+  jpa:
+    hibernate:
+      ddl-auto: validate
+logging:
+  level:
+    com.develitehub: WARN

@@ -1,0 +1,163 @@
+/* ─── Admin Dashboard ────────────────────────────────────────────── */
+
+.admin-dashboard {
+    min-height: 100vh;
+    padding-bottom: var(--space-20);
+}
+
+.admin-header {
+    background: linear-gradient(135deg, #1a1730 0%, #0f1117 100%);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-10) 0;
+    margin-top: var(--nav-height);
+}
+
+.admin-header__title {
+    font-size: var(--text-3xl);
+    font-weight: 900;
+}
+
+.admin-header__sub {
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+    margin-top: var(--space-1);
+}
+
+.admin-body {
+    padding-top: var(--space-8);
+}
+
+.admin-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: var(--space-8);
+    gap: var(--space-1);
+}
+
+.admin-tab {
+    background: none;
+    border: none;
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    padding: var(--space-3) var(--space-5);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all var(--transition-fast);
+    margin-bottom: -1px;
+}
+
+.admin-tab:hover {
+    color: var(--color-text-primary);
+}
+
+.admin-tab.active {
+    color: var(--color-brand-light);
+    border-bottom-color: var(--color-brand);
+}
+
+/* ── Stats ────────────────────────────────────────────────────────── */
+.admin-overview {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+}
+
+.admin-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--space-4);
+}
+
+.admin-stat-card {
+    background: var(--gradient-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: var(--space-5);
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    transition: border-color var(--transition-base);
+}
+
+.admin-stat-card:hover {
+    border-color: var(--color-border-hover);
+}
+
+.admin-stat-card__icon {
+    font-size: 1.75rem;
+    flex-shrink: 0;
+}
+
+.admin-stat-card__value {
+    font-size: var(--text-2xl);
+    font-weight: 800;
+    color: var(--color-text-primary);
+}
+
+.admin-stat-card__label {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* ── Users Table ─────────────────────────────────────────────────── */
+.admin-users__toolbar {
+    display: flex;
+    gap: var(--space-4);
+    margin-bottom: var(--space-4);
+    align-items: center;
+}
+
+.admin-users__table {
+    overflow-x: auto;
+    padding: 0;
+}
+
+.admin-users__table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-users__table th,
+.admin-users__table td {
+    padding: var(--space-4) var(--space-5);
+    text-align: left;
+    font-size: var(--text-sm);
+    border-bottom: 1px solid var(--color-border);
+    white-space: nowrap;
+}
+
+.admin-users__table th {
+    font-weight: 700;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: var(--text-xs);
+    background: var(--color-bg-elevated);
+}
+
+.admin-users__table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.admin-users__table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.row-suspended td {
+    opacity: 0.6;
+}
+
+.badge-danger {
+    background: rgba(255, 87, 87, 0.15);
+    color: var(--color-danger);
+    border: 1px solid rgba(255, 87, 87, 0.3);
+}
+
+@media (max-width: 768px) {
+    .admin-stats-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}

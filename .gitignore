@@ -1,0 +1,44 @@
+# ─── Environment & Secrets ─────────────────────────────────────────
+.env
+.env.local
+.env.production
+*.env
+
+# ─── Java / Maven ──────────────────────────────────────────────────
+backend/target/
+backend/.mvn/repository/
+*.class
+*.jar
+*.war
+*.ear
+*.log
+hs_err_pid*
+
+# ─── Node / Frontend ───────────────────────────────────────────────
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/.cache/
+
+# ─── IDEs ──────────────────────────────────────────────────────────
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+.project
+.classpath
+.settings/
+
+# ─── OS ────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# ─── Docker ────────────────────────────────────────────────────────
+docker-compose.override.yml
+
+# ─── Temp ──────────────────────────────────────────────────────────
+*.tmp
+*.bak
+*.swp

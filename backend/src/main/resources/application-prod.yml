@@ -1,0 +1,89 @@
+server:
+  port: ${PORT:8080}
+  servlet:
+    context-path: /api
+
+spring:
+  application:
+    name: develitehub-backend
+
+  # ─── Database (Railway PostgreSQL) ────────────────────────────────
+  datasource:
+    url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+
+  # ─── JPA ──────────────────────────────────────────────────────────
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: false
+    open-in-view: false
+
+  # ─── File Upload ──────────────────────────────────────────────────
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 100MB
+      max-request-size: 110MB
+
+# ─── JWT ──────────────────────────────────────────────────────────
+jwt:
+  secret: ${JWT_SECRET}
+  expiration-ms: 86400000
+  refresh-expiration-ms: 604800000
+
+# ─── Stripe ───────────────────────────────────────────────────────
+stripe:
+  secret-key: ${STRIPE_SECRET_KEY}
+  webhook-secret: ${STRIPE_WEBHOOK_SECRET}
+  currency: usd
+
+# ─── AWS S3 ───────────────────────────────────────────────────────
+aws:
+  s3:
+    bucket-name: ${AWS_S3_BUCKET:develitehub-content}
+    region: ${AWS_REGION:us-east-1}
+    presigned-url-expiration-minutes: 60
+  access-key: ${AWS_ACCESS_KEY_ID:}
+  secret-key: ${AWS_SECRET_ACCESS_KEY:}
+
+# ─── CORS (Vercel frontend) ───────────────────────────────────────
+cors:
+  allowed-origins: ${CORS_ORIGINS}
+
+# ─── Platform ─────────────────────────────────────────────────────
+platform:
+  commission-rate: 0.15
+  name: DevElite Hub
+
+app:
+  frontend-url: ${FRONTEND_URL}
+
+# ─── Actuator ─────────────────────────────────────────────────────
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: never
+
+# ─── Logging ──────────────────────────────────────────────────────
+logging:
+  level:
+    com.develitehub: WARN
+    org.springframework.security: WARN
+    org.hibernate.SQL: WARN

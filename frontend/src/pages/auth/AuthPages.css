@@ -1,0 +1,170 @@
+/* ─── Auth Pages Shared Styles ───────────────────────────────────── */
+
+.auth-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-8) var(--space-4);
+    padding-top: calc(var(--nav-height) + var(--space-8));
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-page__glow {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 500px;
+    background: radial-gradient(ellipse, rgba(108, 99, 255, 0.16) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+/* ─── Auth Card ──────────────────────────────────────────────────── */
+.auth-card {
+    width: 100%;
+    max-width: 440px;
+    background: var(--gradient-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-10);
+    box-shadow: var(--shadow-lg), var(--shadow-glow);
+    animation: fadeInUp 0.5s ease both;
+    position: relative;
+    z-index: 1;
+}
+
+.auth-card--wide {
+    max-width: 560px;
+}
+
+/* ─── Card Header ────────────────────────────────────────────────── */
+.auth-card__header {
+    text-align: center;
+    margin-bottom: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.auth-card__logo {
+    font-size: var(--text-xl);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    transition: opacity var(--transition-fast);
+}
+
+.auth-card__logo:hover {
+    opacity: 0.8;
+}
+
+.auth-card__title {
+    font-size: var(--text-2xl);
+    font-weight: 800;
+    margin: 0;
+}
+
+.auth-card__subtitle {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+}
+
+/* ─── Role Selector ──────────────────────────────────────────────── */
+.role-selector {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+    margin-bottom: var(--space-6);
+}
+
+.role-option {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-1);
+    padding: var(--space-4);
+    background: var(--color-bg-elevated);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    text-align: left;
+    transition: all var(--transition-base);
+}
+
+.role-option:hover {
+    border-color: var(--color-brand);
+    background: var(--color-bg-card);
+}
+
+.role-option.active {
+    border-color: var(--color-brand);
+    background: rgba(108, 99, 255, 0.08);
+    box-shadow: 0 0 0 2px var(--color-brand-glow);
+}
+
+.role-option__icon {
+    font-size: 1.5rem;
+}
+
+.role-option__label {
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--color-text-primary);
+}
+
+.role-option__desc {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    line-height: 1.4;
+}
+
+/* ─── Auth Form ──────────────────────────────────────────────────── */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+}
+
+/* ─── Error Banner ───────────────────────────────────────────────── */
+.auth-error-banner {
+    background: rgba(255, 87, 87, 0.1);
+    border: 1px solid rgba(255, 87, 87, 0.3);
+    border-radius: var(--radius-md);
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--text-sm);
+    color: var(--color-danger);
+    margin-bottom: var(--space-4);
+    text-align: center;
+}
+
+/* ─── Footer ─────────────────────────────────────────────────────── */
+.auth-card__footer {
+    text-align: center;
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin-top: var(--space-6);
+}
+
+.auth-link {
+    color: var(--color-brand-light);
+    font-weight: 600;
+    transition: color var(--transition-fast);
+}
+
+.auth-link:hover {
+    color: var(--color-brand);
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+    .auth-card {
+        padding: var(--space-6);
+    }
+
+    .role-selector {
+        grid-template-columns: 1fr;
+    }
+}
