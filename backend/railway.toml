@@ -2,7 +2,7 @@
 builder = "NIXPACKS"
 
 [deploy]
-startCommand = "java -Dspring.profiles.active=prod -jar target/*.jar"
+startCommand = "sh -c 'java -Dspring.profiles.active=prod -jar target/*.jar'"
 healthcheckPath = "/actuator/health"
 healthcheckTimeout = 120
 restartPolicyType = "ON_FAILURE"
