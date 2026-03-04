@@ -2,7 +2,7 @@
 builder = "NIXPACKS"
 
 [deploy]
-startCommand = "sh -c 'java -Dspring.profiles.active=prod -jar target/*.jar'"
+startCommand = "java -Dspring.profiles.active=prod -jar $(find /app -name '*.jar' -not -name '*sources*' | head -1)"
 healthcheckPath = "/actuator/health"
 healthcheckTimeout = 120
 restartPolicyType = "ON_FAILURE"
