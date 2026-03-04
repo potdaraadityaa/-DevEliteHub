@@ -105,35 +105,6 @@ function LandingPage() {
                     </div>
                 </div>
 
-                {/* Decorative code block */}
-                <div className="container">
-                    <div className="hero__code-window">
-                        <div className="hero__code-topbar">
-                            <span className="dot red" />
-                            <span className="dot yellow" />
-                            <span className="dot green" />
-                            <span className="hero__code-file">creator-api.java</span>
-                        </div>
-                        <pre className="hero__code-body">
-                            <code>{`@RestController
-@RequestMapping("/api/creators")
-public class CreatorController {
-
-  @PostMapping("/posts")
-  @PreAuthorize("hasRole('CREATOR')")
-  public ResponseEntity<ApiResponse<PostDto>> createPost(
-    @Valid @RequestBody CreatePostRequest req) {
-    
-    return ResponseEntity.status(201)
-      .body(ApiResponse.created(
-        postService.createPost(req),
-        "Post published successfully ✓"
-      ));
-  }
-}`}</code>
-                        </pre>
-                    </div>
-                </div>
             </section>
 
             {/* ── Features ─────────────────────────────────────────── */}
