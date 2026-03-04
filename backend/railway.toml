@@ -1,8 +1,8 @@
 [build]
-builder = "NIXPACKS"
+builder = "DOCKERFILE"
+dockerfilePath = "Dockerfile"
 
 [deploy]
-startCommand = "java -Dspring.profiles.active=prod -jar $(find /app -name '*.jar' -not -name '*sources*' | head -1)"
 healthcheckPath = "/actuator/health"
 healthcheckTimeout = 120
 restartPolicyType = "ON_FAILURE"
